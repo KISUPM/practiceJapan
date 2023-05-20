@@ -1,0 +1,15 @@
+.choice {
+    border: 1px solid black;
+    background: #7575dd;
+    color: black;
+}
+
+/* .choice:disabled{
+    cursor:none;
+    background:red;
+    color:white;
+} */
+
+.correct {
+    background: green !important;
+}

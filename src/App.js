@@ -1,24 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react';
+import { Box, Center } from "@chakra-ui/react";
+// import ShowData from './Components/Main';
+import ShowData from './components/Main.js';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box userSelect={"none"} w="1oovw" h="100vh" display={"grid"} background=" #1C1C1C" color="white">
+      <Center>
+        <ShowData />
+      </Center>
+    </Box>
   );
 }
 
