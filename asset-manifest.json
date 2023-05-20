@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/practiceJapan/static/css/main.0d4d5a41.css",
+    "main.js": "/practiceJapan/static/js/main.679c753f.js",
+    "static/js/787.cc463373.chunk.js": "/practiceJapan/static/js/787.cc463373.chunk.js",
+    "index.html": "/practiceJapan/index.html",
+    "main.0d4d5a41.css.map": "/practiceJapan/static/css/main.0d4d5a41.css.map",
+    "main.679c753f.js.map": "/practiceJapan/static/js/main.679c753f.js.map",
+    "787.cc463373.chunk.js.map": "/practiceJapan/static/js/787.cc463373.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0d4d5a41.css",
+    "static/js/main.679c753f.js"
+  ]
+}
