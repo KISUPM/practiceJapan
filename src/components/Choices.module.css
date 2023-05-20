@@ -1,7 +1,11 @@
 .choice {
-    border: 1px solid black;
-    background: #7575dd;
-    color: black;
+    border: 1px solid #7575dd !important;
+    background: #7575dd !important;
+    color: black !important;
+}
+
+.choice:hover {
+    background: white !important;
 }
 
 /* .choice:disabled{

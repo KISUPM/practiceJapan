@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Heading, Text } from "@chakra-ui/react";
 import jsonData from "./japan-alphabet.json";
 
 import AppContext from "../context/ScoreContext";
@@ -19,6 +19,8 @@ export default function ShowData() {
   
   const [readAnswer, setReadAnswer] = useState("");
   const [choices, setChoices] = useState([]);
+
+  const [fixType,setFixType] = useState("Random");
 
   const Hirangana = jsonData["Hirangana"];
   const Katakana = jsonData["Katakana"];
@@ -61,10 +63,20 @@ export default function ShowData() {
     const alptype = Math.floor(Math.random() * 2);
     const randomIndex = Math.floor(Math.random() * 46);
     const alpRead = readHirangana[randomIndex];
-
-    alptype===0? setQuestionType("Hirangana") : setQuestionType("Katakana");
-    const q =
-      alptype === 0 ? alpHirangana[randomIndex] : alpKatakana[randomIndex];
+    let q;
+    if(fixType==="Hirangana"){
+      setQuestionType("Hirangana")
+      q = alpHirangana[randomIndex];
+    }
+    else if(fixType==="Katakana"){
+      q = alpKatakana[randomIndex]
+      setQuestionType("Katakana")
+    }
+    else{
+      alptype===0? setQuestionType("Hirangana") : setQuestionType("Katakana");
+      q =
+        alptype === 0 ? alpHirangana[randomIndex] : alpKatakana[randomIndex];
+    }
     setReadAnswer(alpRead);
     Quiz.newQuestion(q, alpRead);
     randomChoice(randomIndex);
@@ -110,10 +122,19 @@ export default function ShowData() {
       {/* <Button onClick={randomAnswer}>Random Answer</Button> */}
       {start && (
         <Box textAlign={"center"}>
+          {/* border="1px solid white" */}
+          <Box  w="50vw"  p="20px" m="20px" >
+          <HStack justifyContent={"space-between"}>
+            <Button colorScheme="teal" onClick={()=>{setFixType("Hirangana")}}>Hirangana</Button>
+            <Button colorScheme="teal" onClick={()=>{setFixType("Katakana")}}>Katakana</Button>
+            <Button colorScheme="teal" onClick={()=>{setFixType("Random")}}>Random</Button>
+          </HStack>
+            <Text mt="20px">({fixType})</Text>
+          </Box>
           <Box>
-            <Text>Score get / All Score</Text>
+            <Text>Score get | All Score</Text>
             <Heading>
-              <Text as="span" color="green">{Quiz.score}</Text>{" "}/{" "}
+              <Text as="span" color="green">{Quiz.score}</Text>{" "}|{" "}
               <Text as="span" color="red">{Quiz.count}</Text>
             </Heading>
           </Box>

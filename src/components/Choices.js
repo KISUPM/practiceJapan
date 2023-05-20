@@ -39,7 +39,7 @@ export default function Choices(props) {
           Answer = {Quiz.answer}
         </Text>
       )}
-      <HStack justifyContent={"center"}>
+      <HStack justifyContent={"center"} wrap={"wrap"}>
         {props.allChoice.map((i, index) => {
           return (
             <Button
