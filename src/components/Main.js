@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Button, HStack, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Heading, Text, VStack } from "@chakra-ui/react";
 import jsonData from "./japan-alphabet.json";
+import {RxHamburgerMenu} from "react-icons/rx"
+import {MdClose} from "react-icons/md"
 
 import AppContext from "../context/ScoreContext";
 import Choices from "./Choices";
@@ -27,6 +29,7 @@ export default function ShowData() {
 
   const [questionType,setQuestionType] = useState("");
 
+  const [toggle,setToggle] = useState(false);
   // console.log(Hirangana);
   useEffect(() => {
     const allAlp = [];
@@ -106,6 +109,11 @@ export default function ShowData() {
     }
     return array;
   }
+
+  function toggleMenu(){
+    setToggle(!toggle)
+  }
+
   return (
     <Box>
       {!start && (
@@ -124,11 +132,16 @@ export default function ShowData() {
         <Box textAlign={"center"}>
           {/* border="1px solid white" */}
           <Box  w="50vw"  p="20px" m="20px" >
-          <HStack justifyContent={"space-between"}>
-            <Button colorScheme="teal" onClick={()=>{setFixType("Hirangana")}}>Hirangana</Button>
-            <Button colorScheme="teal" onClick={()=>{setFixType("Katakana")}}>Katakana</Button>
-            <Button colorScheme="teal" onClick={()=>{setFixType("Random")}}>Random</Button>
-          </HStack>
+            <HStack w="100%" justifyContent={"center"}>
+            <Button colorScheme="teal" onClick={toggleMenu}>{!toggle?<RxHamburgerMenu/>:<MdClose/>}</Button>
+            </HStack>
+            {toggle&&
+          <VStack justifyContent={"space-between"}>
+            <Button w="50%" colorScheme="teal" onClick={()=>{setFixType("Hirangana")}}>Hirangana</Button>
+            <Button w="50%" colorScheme="teal" onClick={()=>{setFixType("Katakana")}}>Katakana</Button>
+            <Button w="50%" colorScheme="teal" onClick={()=>{setFixType("Random")}}>Random</Button>
+          </VStack>
+          }
             <Text mt="20px">({fixType})</Text>
           </Box>
           <Box>
