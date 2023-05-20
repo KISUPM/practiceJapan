@@ -1,11 +1,12 @@
 .choice {
     border: 1px solid #7575dd !important;
     background: #7575dd !important;
-    color: black !important;
+    color: white !important;
 }
 
 .choice:hover {
     background: white !important;
+    color: black !important;
 }
 
 /* .choice:disabled{
