@@ -22,7 +22,7 @@ export default function ShowData() {
   const [readAnswer, setReadAnswer] = useState("");
   const [choices, setChoices] = useState([]);
 
-  const [fixType,setFixType] = useState("Random");
+  const [fixType,setFixType] = useState("Hirangana");
 
   const Hirangana = jsonData["Hirangana"];
   const Katakana = jsonData["Katakana"];

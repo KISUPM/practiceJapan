@@ -21,7 +21,7 @@ export default function Choices(props) {
     const choice = event.target.innerHTML;
     setIsCorrect(Quiz.checkAnswer(choice));
     setIsShowAnswer(true);
-    await sleep(3000);
+    await sleep(2000);
     setIsShowAnswer(false);
     props.newQuestion();
     setIsDisable(false);
