@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Box, Button, HStack, Text } from "@chakra-ui/react";
+import { Box, Button, Grid, Text } from "@chakra-ui/react";
 import AppContext from "../context/ScoreContext";
 
 import classes from "./Choices.module.css";
@@ -39,7 +39,15 @@ export default function Choices(props) {
           Answer = {Quiz.answer}
         </Text>
       )}
-      <HStack justifyContent={"center"} wrap={"wrap"}>
+      <Grid
+        templateColumns={`repeat(${
+          props.allChoice.length <= 5 ? props.allChoice.length : 5
+        },1fr)`}
+        w="fit-content"
+        // border="1px solid red"
+        gap={"10px"}
+        mx="auto"
+      >
         {props.allChoice.map((i, index) => {
           return (
             <Button
@@ -52,7 +60,7 @@ export default function Choices(props) {
             </Button>
           );
         })}
-      </HStack>
+      </Grid>
     </Box>
   );
 }

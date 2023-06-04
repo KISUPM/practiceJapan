@@ -1,9 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Button, HStack, Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  Heading,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import jsonData from "./japan-alphabet.json";
-import {RxHamburgerMenu} from "react-icons/rx"
-import {MdClose} from "react-icons/md"
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdClose } from "react-icons/md";
 
 import AppContext from "../context/ScoreContext";
 import Choices from "./Choices";
@@ -18,18 +26,18 @@ export default function ShowData() {
   const [readKatakana, setReadKatakana] = useState([]);
 
   const [start, setStart] = useState(false);
-  
+
   const [readAnswer, setReadAnswer] = useState("");
   const [choices, setChoices] = useState([]);
 
-  const [fixType,setFixType] = useState("Hirangana");
+  const [fixType, setFixType] = useState("Hirangana");
 
   const Hirangana = jsonData["Hirangana"];
   const Katakana = jsonData["Katakana"];
 
-  const [questionType,setQuestionType] = useState("");
+  const [questionType, setQuestionType] = useState("");
 
-  const [toggle,setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false);
   // console.log(Hirangana);
   useEffect(() => {
     const allAlp = [];
@@ -67,18 +75,17 @@ export default function ShowData() {
     const randomIndex = Math.floor(Math.random() * 46);
     const alpRead = readHirangana[randomIndex];
     let q;
-    if(fixType==="Hirangana"){
-      setQuestionType("Hirangana")
+    if (fixType === "Hirangana") {
+      setQuestionType("Hirangana");
       q = alpHirangana[randomIndex];
-    }
-    else if(fixType==="Katakana"){
-      q = alpKatakana[randomIndex]
-      setQuestionType("Katakana")
-    }
-    else{
-      alptype===0? setQuestionType("Hirangana") : setQuestionType("Katakana");
-      q =
-        alptype === 0 ? alpHirangana[randomIndex] : alpKatakana[randomIndex];
+    } else if (fixType === "Katakana") {
+      q = alpKatakana[randomIndex];
+      setQuestionType("Katakana");
+    } else {
+      alptype === 0
+        ? setQuestionType("Hirangana")
+        : setQuestionType("Katakana");
+      q = alptype === 0 ? alpHirangana[randomIndex] : alpKatakana[randomIndex];
     }
     setReadAnswer(alpRead);
     Quiz.newQuestion(q, alpRead);
@@ -87,15 +94,19 @@ export default function ShowData() {
 
   const randomChoice = (ansIndex) => {
     const correctAnswer = readHirangana[ansIndex];
+    const clone = [];
     let allChoice = [];
     let count = 0;
     do {
       const randChoiceIndex = Math.floor(Math.random() * 46);
-      if (randChoiceIndex !== ansIndex) {
+      if (
+        randChoiceIndex !== ansIndex &&
+        allChoice.indexOf(readAnswer[randChoiceIndex]) === -1
+      ) {
         allChoice.push(readHirangana[randChoiceIndex]);
         count += 1;
       }
-    } while (count < Math.floor(Quiz.score/10)+1);
+    } while (count < Math.floor(Quiz.score / 10) + 1 && count<=45);
     allChoice.push(correctAnswer);
     allChoice = shuffleChoice(allChoice);
     // console.log(allChoice)
@@ -110,45 +121,87 @@ export default function ShowData() {
     return array;
   }
 
-  function toggleMenu(){
-    setToggle(!toggle)
+  function toggleMenu() {
+    setToggle(!toggle);
   }
 
   return (
     <Box>
       {!start && (
-        <Button
-          colorScheme="teal"
-          onClick={() => {
-            randomAnswer();
-            setStart(true);
-          }}
-        >
-          Start
-        </Button>
+        <Box>
+          <VStack>
+            <Button
+              w="100%"
+              colorScheme="teal"
+              onClick={() => {
+                randomAnswer();
+                setStart(true);
+              }}
+            >
+              Start Test
+            </Button>
+            <Button w="100%" colorScheme="teal">
+              Practice Hirangana
+            </Button>
+            <Button w="100%" colorScheme="teal">
+              Practice Katakana
+            </Button>
+          </VStack>
+        </Box>
       )}
       {/* <Button onClick={randomAnswer}>Random Answer</Button> */}
       {start && (
         <Box textAlign={"center"}>
           {/* border="1px solid white" */}
-          <Box  w="50vw"  p="20px" m="20px" >
+          <Box w="50vw" p="20px" m="20px">
             <HStack w="100%" justifyContent={"center"}>
-            <Button colorScheme="teal" onClick={toggleMenu}>{!toggle?<RxHamburgerMenu/>:<MdClose/>}</Button>
+              <Button colorScheme="teal" onClick={toggleMenu}>
+                {!toggle ? <RxHamburgerMenu /> : <MdClose />}
+              </Button>
             </HStack>
-            {toggle&&
-          <VStack justifyContent={"space-between"}>
-            <Button w="50%" colorScheme="teal" onClick={()=>{setFixType("Hirangana")}}>Hirangana</Button>
-            <Button w="50%" colorScheme="teal" onClick={()=>{setFixType("Katakana")}}>Katakana</Button>
-            <Button w="50%" colorScheme="teal" onClick={()=>{setFixType("Random")}}>Random</Button>
-          </VStack>
-          }
-            <Text mt="20px">({fixType})</Text>
+            {toggle && (
+              <VStack justifyContent={"space-between"}>
+                <Button
+                  w="50%"
+                  colorScheme="teal"
+                  onClick={() => {
+                    setFixType("Hirangana");
+                  }}
+                >
+                  Hirangana
+                </Button>
+                <Button
+                  w="50%"
+                  colorScheme="teal"
+                  onClick={() => {
+                    setFixType("Katakana");
+                  }}
+                >
+                  Katakana
+                </Button>
+                <Button
+                  w="50%"
+                  colorScheme="teal"
+                  onClick={() => {
+                    setFixType("Random");
+                  }}
+                >
+                  Random
+                </Button>
+              </VStack>
+            )}
+            <Text mt="20px">(next is <Text as="span" fontWeight={"bold"} textDecor={"underline"}>{fixType}</Text>)</Text>
           </Box>
           <Box>
             <Text>Score get | All Score</Text>
             <Heading>
-              <Text as="span" color="green">{Quiz.score}</Text>{" "}|{" "}
-              <Text as="span" color="red">{Quiz.count}</Text>
+              <Text as="span" color="green">
+                {Quiz.score}
+              </Text>{" "}
+              |{" "}
+              <Text as="span" color="red">
+                {Quiz.count}
+              </Text>
             </Heading>
           </Box>
           <Heading fontSize={"10rem"}>{Quiz.question}</Heading>
