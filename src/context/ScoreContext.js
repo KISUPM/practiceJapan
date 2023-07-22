@@ -3,20 +3,25 @@ import React, { useState, createContext } from "react";
 const AppContext = createContext({
   score: 0,
   count: 0,
-  numberOfChoice:0,
+  numberOfChoice: 0,
   question: "",
   answer: "",
-  setNumberOfChoice: ()=>{},
-  checkAnswer: (ans) => {return false},
+  timeDelay: 0,
+  setTimeDelay: (second) => {},
+  setNumberOfChoice: () => {},
+  checkAnswer: (ans) => {
+    return false;
+  },
   newQuestion: (question, ans) => {},
 });
 
 export function AppContextProvider(props) {
   const [score, setScore] = useState(0);
   const [count, setCount] = useState(0);
-  const [numberOfChoice,setNumberOfChoice] = useState(0);
+  const [numberOfChoice, setNumberOfChoice] = useState(0);
   const [question, setQuestion] = useState("");
   const [answer, SetAnswer] = useState("");
+  const [delay, setDelay] = useState(1);
 
   function CheckAnswer(ans) {
     ans === answer ? setScore(score + 1) : setScore(score);
@@ -29,19 +34,25 @@ export function AppContextProvider(props) {
     SetAnswer(ans);
   };
 
-  const setChoiceAmount = (num) =>{
-    if (typeof num === 'number') setNumberOfChoice(num)
-  }
+  const setChoiceAmount = (num) => {
+    if (typeof num === "number") setNumberOfChoice(num);
+  };
+
+  const setTimeDelay = (second) => {
+    setDelay(second);
+  };
 
   const context = {
     score: score,
     count: count,
-    numberOfChoice:numberOfChoice,
+    numberOfChoice: numberOfChoice,
     question: question,
     answer: answer,
+    timeDelay: delay,
+    setTimeDelay: setTimeDelay,
     checkAnswer: CheckAnswer,
     newQuestion: newQuestion,
-    setNumberOfChoice:setChoiceAmount
+    setNumberOfChoice: setChoiceAmount,
   };
 
   return (

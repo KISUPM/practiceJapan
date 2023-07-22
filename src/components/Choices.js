@@ -3,6 +3,7 @@ import { Box, Button, Grid, Text } from "@chakra-ui/react";
 import AppContext from "../context/ScoreContext";
 
 import classes from "./Choices.module.css";
+import SetDelay from "./SetDelay";
 
 export default function Choices(props) {
   const Quiz = useContext(AppContext);
@@ -21,14 +22,14 @@ export default function Choices(props) {
     const choice = event.target.innerHTML;
     setIsCorrect(Quiz.checkAnswer(choice));
     setIsShowAnswer(true);
-    await sleep(2000);
+    await sleep(Quiz.timeDelay * 1000);
     setIsShowAnswer(false);
     props.newQuestion();
     setIsDisable(false);
   };
 
   return (
-    <Box>
+    <Box position="relative">
       {isShowAnswer && (
         <Text
           color={isCorrect ? "green" : "red"}
@@ -39,6 +40,7 @@ export default function Choices(props) {
           Answer = {Quiz.answer}
         </Text>
       )}
+      <SetDelay />
       <Grid
         templateColumns={`repeat(${
           props.allChoice.length <= 5 ? props.allChoice.length : 5
