@@ -15,6 +15,7 @@ import { MdClose } from "react-icons/md";
 
 import AppContext from "../context/ScoreContext";
 import Choices from "./Choices";
+import SetDelay from "./SetDelay";
 
 export default function ShowData() {
   const Quiz = useContext(AppContext);
@@ -106,7 +107,7 @@ export default function ShowData() {
         allChoice.push(readHirangana[randChoiceIndex]);
         count += 1;
       }
-    } while (count < Math.floor(Quiz.score / 10) + 1 && count<=45);
+    } while (count < Math.floor(Quiz.score / 10) + 1 && count <= 45);
     allChoice.push(correctAnswer);
     allChoice = shuffleChoice(allChoice);
     // console.log(allChoice)
@@ -190,7 +191,13 @@ export default function ShowData() {
                 </Button>
               </VStack>
             )}
-            <Text mt="20px">(next is <Text as="span" fontWeight={"bold"} textDecor={"underline"}>{fixType}</Text>)</Text>
+            <Text mt="20px">
+              (next is{" "}
+              <Text as="span" fontWeight={"bold"} textDecor={"underline"}>
+                {fixType}
+              </Text>
+              )
+            </Text>
           </Box>
           <Box>
             <Text>Score get | All Score</Text>
@@ -206,6 +213,8 @@ export default function ShowData() {
           </Box>
           <Heading fontSize={"10rem"}>{Quiz.question}</Heading>
           <Text mb="20px">({questionType})</Text>
+          <SetDelay />
+
           {/* <Text>read as {readAnswer}</Text> */}
           <Choices allChoice={choices} newQuestion={randomAnswer} />
         </Box>

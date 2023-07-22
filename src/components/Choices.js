@@ -30,16 +30,24 @@ export default function Choices(props) {
 
   return (
     <Box position="relative">
-      {isShowAnswer && (
+      {isShowAnswer && 
+      // {
         <Text
-          color={isCorrect ? "green" : "red"}
+          color={"white"}
           border={`1px solid ${isCorrect ? "green" : "red"}`}
+          bg={isCorrect ? "rgb(0,255,0,0.8)" : "rgb(255,0,0,0.8)"}
           p="20px"
-          m="20px"
+          // m="20px"
+          position="absolute"
+          top="-50%"
+          left="50%"
+          transform={"translate(-50%,0%)"}
+          zIndex={1}
+          w="80%"
         >
           Answer = {Quiz.answer}
         </Text>
-      )}
+      }
       <SetDelay />
       <Grid
         templateColumns={`repeat(${
