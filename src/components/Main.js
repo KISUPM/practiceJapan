@@ -154,7 +154,7 @@ export default function ShowData() {
       {start && (
         <Box textAlign={"center"}>
           {/* border="1px solid white" */}
-          <Box w="50vw" p="20px" m="20px">
+          <Box w="50vw" p="20px" m="auto" >
             <HStack w="100%" justifyContent={"center"}>
               <Button colorScheme="teal" onClick={toggleMenu}>
                 {!toggle ? <RxHamburgerMenu /> : <MdClose />}
