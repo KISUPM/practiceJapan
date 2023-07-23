@@ -102,7 +102,7 @@ export default function ShowData() {
       const randChoiceIndex = Math.floor(Math.random() * 46);
       if (
         randChoiceIndex !== ansIndex &&
-        allChoice.indexOf(readAnswer[randChoiceIndex]) === -1
+        allChoice.indexOf(readHirangana[randChoiceIndex]) === -1
       ) {
         allChoice.push(readHirangana[randChoiceIndex]);
         count += 1;
