@@ -160,7 +160,7 @@ export default function ShowData() {
           {/* border="1px solid white" */}
           <ResetButton />
           <Box w="50vw" p="20px" m="auto">
-            <Menu>
+            <Menu placement="bottom">
               <MenuButton>
                 <Button colorScheme="twitter">
                   <RxHamburgerMenu />
