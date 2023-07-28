@@ -6,6 +6,10 @@ import {
   Center,
   HStack,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -16,6 +20,7 @@ import { MdClose } from "react-icons/md";
 import AppContext from "../context/ScoreContext";
 import Choices from "./Choices";
 import SetDelay from "./SetDelay";
+import ResetButton from "./Reset";
 
 export default function ShowData() {
   const Quiz = useContext(AppContext);
@@ -150,47 +155,57 @@ export default function ShowData() {
           </VStack>
         </Box>
       )}
-      {/* <Button onClick={randomAnswer}>Random Answer</Button> */}
       {start && (
         <Box textAlign={"center"}>
           {/* border="1px solid white" */}
-          <Box w="50vw" p="20px" m="auto" >
-            <HStack w="100%" justifyContent={"center"}>
-              <Button colorScheme="teal" onClick={toggleMenu}>
-                {!toggle ? <RxHamburgerMenu /> : <MdClose />}
-              </Button>
-            </HStack>
-            {toggle && (
-              <VStack justifyContent={"space-between"}>
-                <Button
-                  w="50%"
-                  colorScheme="teal"
-                  onClick={() => {
-                    setFixType("Hirangana");
-                  }}
-                >
-                  Hirangana
+          <ResetButton />
+          <Box w="50vw" p="20px" m="auto">
+            <Menu>
+              <MenuButton>
+                <Button colorScheme="twitter">
+                  <RxHamburgerMenu />
                 </Button>
-                <Button
-                  w="50%"
-                  colorScheme="teal"
-                  onClick={() => {
-                    setFixType("Katakana");
-                  }}
-                >
-                  Katakana
-                </Button>
-                <Button
-                  w="50%"
-                  colorScheme="teal"
-                  onClick={() => {
-                    setFixType("Random");
-                  }}
-                >
-                  Random
-                </Button>
-              </VStack>
-            )}
+              </MenuButton>
+              <MenuList>
+                <MenuItem>
+                  <Button
+                    w="100%"
+                    textAlign={"center"}
+                    colorScheme="teal"
+                    onClick={() => {
+                      setFixType("Hirangana");
+                    }}
+                  >
+                    Hirangana
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    w="100%"
+                    textAlign={"center"}
+                    colorScheme="teal"
+                    onClick={() => {
+                      setFixType("Katakana");
+                    }}
+                  >
+                    Katakana
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    w="100%"
+                    textAlign={"center"}
+                    colorScheme="teal"
+                    onClick={() => {
+                      setFixType("Random");
+                    }}
+                  >
+                    Random
+                  </Button>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <Text mt="20px">
               (next is{" "}
               <Text as="span" fontWeight={"bold"} textDecor={"underline"}>

@@ -13,6 +13,7 @@ const AppContext = createContext({
     return false;
   },
   newQuestion: (question, ans) => {},
+  resetScore: () => {},
 });
 
 export function AppContextProvider(props) {
@@ -42,6 +43,11 @@ export function AppContextProvider(props) {
     setDelay(second);
   };
 
+  const resetScore = () => {
+    setScore(0);
+    setCount(0);
+  };
+
   const context = {
     score: score,
     count: count,
@@ -49,6 +55,7 @@ export function AppContextProvider(props) {
     question: question,
     answer: answer,
     timeDelay: delay,
+    resetScore: resetScore,
     setTimeDelay: setTimeDelay,
     checkAnswer: CheckAnswer,
     newQuestion: newQuestion,
