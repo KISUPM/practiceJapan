@@ -146,10 +146,26 @@ export default function ShowData() {
             >
               Start Test
             </Button>
-            <Button w="100%" colorScheme="teal">
+            <Button
+              w="100%"
+              colorScheme="teal"
+              onClick={() => {
+                randomAnswer();
+                setStart(true);
+                setFixType("Hirangana");
+              }}
+            >
               Practice Hirangana
             </Button>
-            <Button w="100%" colorScheme="teal">
+            <Button
+              w="100%"
+              colorScheme="teal"
+              onClick={() => {
+                randomAnswer();
+                setStart(true);
+                setFixType("Katakana");
+              }}
+            >
               Practice Katakana
             </Button>
           </VStack>
@@ -161,13 +177,11 @@ export default function ShowData() {
           <ResetButton />
           <Box w="50vw" p="20px" m="auto">
             <Menu placement="bottom">
-              <MenuButton>
-                <Button colorScheme="twitter">
-                  <RxHamburgerMenu />
-                </Button>
+              <MenuButton as={Button} colorScheme="twitter">
+                <RxHamburgerMenu />
               </MenuButton>
               <MenuList>
-                <MenuItem>
+                <MenuItem as={Box}>
                   <Button
                     w="100%"
                     textAlign={"center"}
@@ -179,7 +193,7 @@ export default function ShowData() {
                     Hirangana
                   </Button>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem as={Box}>
                   <Button
                     w="100%"
                     textAlign={"center"}
@@ -191,7 +205,7 @@ export default function ShowData() {
                     Katakana
                   </Button>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem as={Box}>
                   <Button
                     w="100%"
                     textAlign={"center"}

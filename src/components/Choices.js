@@ -17,7 +17,7 @@ export default function Choices(props) {
   };
 
   const check = async (event) => {
-    console.clear();
+    // console.clear();
     setIsDisable(true);
     const choice = event.target.innerHTML;
     setIsCorrect(Quiz.checkAnswer(choice));
@@ -30,8 +30,8 @@ export default function Choices(props) {
 
   return (
     <Box position="relative">
-      {isShowAnswer && 
-      // {
+      {isShowAnswer && (
+        // {
         <Text
           color={"white"}
           border={`1px solid ${isCorrect ? "green" : "red"}`}
@@ -47,7 +47,7 @@ export default function Choices(props) {
         >
           Answer = {Quiz.answer}
         </Text>
-      }
+      )}
       <SetDelay />
       <Grid
         templateColumns={`repeat(${
